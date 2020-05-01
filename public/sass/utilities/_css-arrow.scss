@@ -1,0 +1,156 @@
+// CSS Arrow Mixin
+// By: Jerry Low
+
+@mixin css-arrow($height: 10px, $border: 2px, $color: #fff, $border-color: #000, $direction: bottom, $outside: true) {
+  $border-shift: $border;
+
+  @if $border > 0px {
+    $border: round($border * 1.41421356);
+  }
+
+  position: relative;
+
+  &:after,
+  &:before {
+    border: solid transparent;
+    content: " ";
+    display: block;
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    width: 0;
+
+    @if $direction == top {
+      @if $outside {
+        bottom: 100%;
+      }
+      @else {
+        margin-top: -$border-shift;
+        top: 0;
+      }
+    }
+    @if $direction == right {
+      @if $outside {
+        left: 100%;
+      }
+      @else {
+        margin-right: -$border-shift;
+        right: 0;
+      }
+    }
+    @if $direction == bottom {
+      @if $outside {
+        top: 100%;
+      }
+      @else {
+        bottom: 0;
+        margin-bottom: -$border-shift;
+      }
+    }
+    @if $direction == left {
+      @if $outside {
+        right: 100%;
+      }
+      @else {
+        left: 0;
+        margin-left: -$border-shift;
+      }
+    }
+  }
+
+  &:after {
+    border-color: rgba(255, 255, 255, 0);
+    @if $direction == top {
+      @if $outside {
+        border-bottom-color: $color;
+      }
+      @else {
+        border-top-color: $color;
+      }
+    }
+    @if $direction == right {
+      @if $outside {
+        border-left-color: $color;
+      }
+      @else {
+        border-right-color: $color;
+      }
+    }
+    @if $direction == bottom {
+      @if $outside {
+        border-top-color: $color;
+      }
+      @else {
+        border-bottom-color: $color;
+      }
+    }
+    @if $direction == left {
+      @if $outside {
+        border-right-color: $color;
+      }
+      @else {
+        border-left-color: $color;
+      }
+    }
+
+    @if $direction == top or $direction == bottom {
+      left: 50%;
+      margin-left: -$height;
+    }
+
+    @if $direction == left or $direction == right {
+      top: 50%;
+      margin-top: -$height;
+    }
+
+    border-width: $height;
+  }
+
+  &:before {
+    border-color: rgba(255, 255, 255, 0);
+    @if $direction == top {
+      @if $outside {
+        border-bottom-color: $border-color;
+      }
+      @else {
+        border-top-color: $border-color;
+      }
+    }
+    @if $direction == right {
+      @if $outside {
+        border-left-color: $border-color;
+      }
+      @else {
+        border-right-color: $border-color;
+      }
+    }
+    @if $direction == bottom {
+      @if $outside {
+        border-top-color: $border-color;
+      }
+      @else {
+        border-bottom-color: $border-color;
+      }
+    }
+    @if $direction == left {
+      @if $outside {
+        border-right-color: $border-color;
+      }
+      @else {
+        border-left-color: $border-color;
+      }
+    }
+
+    @if $direction == top or $direction == bottom {
+      left: 50%;
+      margin-left: -($height + $border);
+    }
+
+    @if $direction == left or $direction == right {
+      top: 50%;
+      margin-top: -($height + $border);
+    }
+
+    border-width: $height + $border;
+  }
+}

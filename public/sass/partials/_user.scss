@@ -1,0 +1,77 @@
+.login-wrapper {
+  background: $pink;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.login {
+  @include horizontal-vertical-center;
+  color: white;
+  text-align: center;
+
+  > * {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  > h1 {
+    @include remove-text;
+    background: url(../images/logo-white.svg);
+    background-repeat: no-repeat;
+    background-size: auto 40px;
+    height: 40px;
+    margin: 0 auto 10px;
+    @include keyframes-call(fade-in, 0.5s, 1);
+    animation-delay: 0.5s;
+    width: 187px;
+  }
+
+  > p {
+    @include keyframes-call(fade-in, 0.5s, 1);
+    animation-delay: 0.8s;
+  }
+
+  > a {
+    background: darken($pink, 10%);
+    @include keyframes-call(fade-in, 0.5s, 1);
+    animation-delay: 1.1s;
+    margin-top: 20px;
+
+    &:hover {
+      background: darken($pink, 15%);
+    }
+  }
+}
+
+.user {
+  display: flex;
+}
+
+.user-image {
+  background: $lgrey;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+  height: 48px;
+  margin: 0 15px 0 0;
+  overflow: hidden;
+  width: 48px;
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 2px;
+
+  .name {
+    font-size: 1.8rem;
+  }
+}

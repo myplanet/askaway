@@ -1,0 +1,23 @@
+<div class="question-form">
+
+  <input type="button" ng-hide="room_input == 2" class="btn verbal" value="Ask Verbally" ng-click="askSubmit('verbal')" />
+
+  <div ng-show="room_input == 1" class="or-separator">or</div>
+
+  <form ng-hide="room_input == 3" ng-class="{ 'submitted' : formSubmitted }" novalidate>
+    <ul ng-show="formError.length" class="form-error">
+      <li ng-repeat="error in formError">{{ error.message }}</li>
+    </ul>
+
+    <label class="invisible">Ask your question below</label>
+    <textarea ng-model="questionInfo.desc" placeholder="Enter your question here..." required></textarea>
+
+    <div class="form-group">
+      <label class="invisible">Ask Question</label>
+      <label class="radio-checkbox"><input type="radio" name="anonymous" value="0"  ng-model="questionInfo.anonymous">As Yourself (Show Name)</label>
+      <label class="radio-checkbox"><input type="radio" name="anonymous" value="1"   ng-model="questionInfo.anonymous">Anonymously</label>
+    </div>
+
+    <input type="submit" class="btn submit" value="Submit" ng-click="askSubmit('textual')" />
+  </form>
+</div>

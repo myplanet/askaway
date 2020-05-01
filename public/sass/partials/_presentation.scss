@@ -1,0 +1,244 @@
+// Presentation Mode
+body.presentation {
+  header {
+    height: $header-presentation-height;
+
+    @include respond-to(xs) {
+      height: $header-presentation-height-phone;
+    }
+  }
+
+  .header-top {
+    display: none;
+  }
+
+  .header-bot {
+    .btn--ask {
+      display: none;
+    }
+  }
+
+  #content {
+    padding-top: $header-presentation-height;
+
+    @include respond-to(xs) {
+      padding-top: $header-presentation-height-phone;
+    }
+  }
+
+  #main {
+    width: 100%;
+  }
+
+  #sidebar {
+    background: white;
+    border: none;
+    display: none;
+    height: 100%;
+    padding-top: 20px;
+    right: -$sidebar-width;
+    top: 0;
+    z-index: 20;
+  }
+
+  .sidebar-toggle {
+    display: block;
+
+    @include respond-to(gt-xs) {
+      font-size: 2.1rem;
+    }
+  }
+
+  &.sidebar-on {
+    #sidebar {
+      box-shadow: 0 0 18px rgba(0,0,0,0.12);
+      display: block;
+    }
+
+    .sidebar-fade {
+      display: block;
+    }
+  }
+
+  &.sidebar-in {
+    #sidebar {
+      right: 0;
+    }
+
+    .sidebar-fade {
+      opacity: 1;
+    }
+  }
+
+  .room-questions {
+    max-width: 1140px;
+
+    .questions-heading {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    ul.questions {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: none;
+
+      &:after {
+        content: "";
+        flex: auto;
+      }
+    }
+
+    li.question {
+      display: flex;
+      flex-direction: column;
+      margin: 0 2.5% 30px 0;
+      min-height: 300px;
+      width: 31.666667%;
+
+      &:nth-of-type(3n-3) {
+        margin-right: 0;
+      }
+
+      @include respond-to(md) {
+        margin-right: 4%;
+        width: 48%;
+
+        &:nth-of-type(3n-3) {
+          margin-right: 4%;
+        }
+
+        &:nth-of-type(2n-2) {
+          margin-right: 0;
+        }
+      }
+
+      @include respond-to(xs) {
+        margin-bottom: 15px;
+        margin-right: 0 !important;
+        min-height: 0;
+        width: 100%;
+      }
+
+      .context {
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        font-size: 1.6rem;
+        -webkit-line-clamp: 6;
+        line-height: 1.6;
+        max-height: 145px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .question-bottom {
+      margin-top: auto;
+    }
+
+    .question-controls {
+      display: none;
+    }
+
+    .question-active {
+      .question-controls {
+        display: block;
+      }
+    }
+  }
+}
+
+// Presentation Button
+.presentation-toggle {
+  background: $bg-grey;
+  border: 2px solid $bg-grey;
+  border-radius: 2px;
+  height: 44px;
+  margin-left: 30px;
+  position: relative;
+  width: 86px;
+
+  @include respond-to(xs) {
+    background: white;
+    border: 1px solid $bg-grey;
+    border-radius: 2px;
+    height: 32px;
+    margin-left: 0;
+    transition: background 0.3s;
+    width: 32px;
+  }
+
+  .icon {
+    background: no-repeat center;
+    background-size: 22px auto;
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.3s;
+    width: 50%;
+    z-index: 2;
+  }
+
+  .icon-desktop {
+    background-image: url(../images/icons/view-desktop.svg);
+    left: 0;
+
+    @include respond-to(xs) {
+      display: none;
+    }
+  }
+
+  .icon-presentation {
+    background-image: url(../images/icons/view-presentation.svg);
+    right: 0;
+    opacity: 0.4;
+
+    @include respond-to(xs) {
+      background-size: auto 18px;
+      height: 100%;
+      right: 0;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  .selector {
+    background: white;
+    border-radius: 2px;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: left 0.3s;
+    width: 50%;
+    z-index: 1;
+
+    @include respond-to(xs) {
+      display: none;
+    }
+  }
+
+  &.active {
+    @include respond-to(xs) {
+      background: $border-grey;
+    }
+
+    .icon-desktop {
+      opacity: 0.4;
+    }
+
+    .icon-presentation {
+      opacity: 1;
+
+      @include respond-to(xs) {
+        opacity: 0.4;
+      }
+    }
+
+    .selector {
+      left: 41px;
+    }
+  }
+}

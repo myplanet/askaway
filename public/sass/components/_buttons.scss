@@ -1,0 +1,65 @@
+// Button
+.btn,
+a.btn {
+  background-color: $pink;
+  background-position: right center;
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 11px 25px 12px;
+  text-align: center;
+
+  &:hover {
+    background-color: darken($pink, 5%);
+    color: white;
+  }
+
+  &.light {
+    background-color: $grey;
+
+    &:hover {
+      background-color: darken($grey, 10%);
+    }
+  }
+
+  &.dark {
+    background-color: $dgrey;
+
+    &:hover {
+      background-color: darken($dgrey, 10%);
+    }
+  }
+
+  &.green {
+    background-color: $green;
+
+    &:hover {
+      background-color: darken($green, 10%);
+    }
+  }
+
+  &.purple {
+    background-color: $purple;
+
+    &:hover {
+      background-color: darken($purple, 10%);
+    }
+  }
+}
+
+.close {
+  background: url(../images/icons/x-grey.svg) no-repeat center;
+  background-size: 14px;
+  height: 25px;
+  transition: opacity 0.2s ease;
+  width: 25px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

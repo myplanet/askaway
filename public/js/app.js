@@ -1,0 +1,21 @@
+angular.module('askaway', [
+  'ngRoute',
+  'ngCookies',
+  'ngTouch',
+  'appRoutes',
+  'appSocket',
+  'angular-click-outside',
+  'angularModalService',
+  'angularMoment',
+  'fastClick',
+  'appAuth',
+  'generalDirectives',
+  'roomDirectives',
+  'aaRooms',
+  'aaRoom',
+  'aaGeneral',
+  'iif',
+  'truncate',
+  'appUI',
+  'appPermission'
+]);

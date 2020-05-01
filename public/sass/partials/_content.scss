@@ -1,0 +1,77 @@
+// Content
+#content {
+  padding: $header-height 0 0;
+
+  @include respond-to(xs) {
+    padding: $header-height-phone 0 0;
+  }
+}
+
+// Info
+.info-group {
+  margin-bottom: 20px;
+}
+
+.info-group__value {
+  color: $grey;
+  font-size: 1.4rem;
+}
+
+.info-group--date,
+.info-group--host,
+.info-group--link {
+  background: no-repeat left center;
+  background-size: 20px auto;
+  margin-bottom: 12px;
+  padding-left: 30px;
+}
+
+.info-group--date {
+  background-image: url(../images/icons/calendar.svg);
+}
+
+.info-group--host {
+  position: relative;
+
+  .user-image {
+    height: 20px;
+    left: 0;
+    margin: -10px 0 0;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+  }
+}
+
+.info-group--link {
+  background-image: url(../images/icons/link.svg);
+
+  .info-group__value {
+    word-break: break-all;
+  }
+}
+
+// Empty Page.
+.empty {
+  background: none;
+  color: darken($lgrey, 15%);
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-top: 23%;
+  text-align: center;
+  text-shadow: 0px -1px 0 lighten($lgrey, 2%);
+  width: 100%;
+}
+
+#main {
+  padding: 40px 30px;
+  @include calc(width, "100% - " + $sidebar-width);
+
+  @include respond-to(md) {
+    width: 100%;
+  }
+
+  @include respond-to(xs) {
+    padding: 20px 20px 0;
+  }
+}

@@ -1,0 +1,77 @@
+// LINKS
+// -----------------------------------------------
+
+a {
+  color: $dgrey;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:visited,
+  &:active {
+    color: $dgrey;
+    text-decoration: none;
+  }
+
+
+  &:hover {
+    color: $pink;
+    text-decoration: none;
+  }
+}
+
+// TYPOGRAPHY
+// -----------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.5;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.75em;
+}
+
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5em;
+}
+
+h4 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5em;
+}
+
+h5 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+h6 {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Paragraph styles. */
+p {
+  margin: 0 0 1em 0;
+}

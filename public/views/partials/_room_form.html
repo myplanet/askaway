@@ -1,0 +1,65 @@
+ <form ng-class="{ 'submitted' : formSubmitted }" novalidate>
+  <ul ng-show="formError.length" class="form-error">
+    <li ng-repeat="error in formError">{{ error.message }}</li>
+  </ul>
+
+  <div class="form-group">
+    <label for="room_name">Room name</label>
+    <input type="text" id="room_name" name="room_name" ng-model="roomInfo.room_name" required />
+  </div>
+
+  <div class="form-group">
+    <label for="room_desc">Description</label>
+    <input type="text" id="room_desc" name="room_desc" ng-model="roomInfo.room_desc" class="room-desc" maxlength="100" />
+  </div>
+
+  <div ng-show="roomInfoShow">
+    <div class="info-group info-group--date">
+      <span class="info-group__value">Created: {{room_date | date:'MMM d, yyyy'}}</span>
+    </div>
+
+    <div class="info-group info-group--host">
+      <span class="user-image">
+        <img src="{{room_host_image}}" />
+      </span>
+
+      <span class="info-group__value">Host: {{room_host}}</span>
+    </div>
+
+    <div class="info-group info-group--link">
+      <span class="info-group__value">{{room_url}}</span>
+    </div>
+  </div>
+
+  <hr class="hr-full-width" />
+
+  <div class="form-group">
+    <label for="room_notification">Queue notification</label>
+    <select id="room_notification" name="room_notification" ng-model="roomInfo.room_notification">
+      <option value="aggressive">Every 30 seconds</option>
+      <option value="normal" selected>Every minute</option>
+      <option value="passive">Every 2 minutes</option>
+      <option value="dormant">Every 5 minutes</option>
+      <option value="none">Never</option>
+    <select>
+  </div>
+
+  <div class="form-group">
+    <label>Allow Voting</label>
+    <label class="radio-checkbox"><input type="radio" name="question_voting" value="1"  ng-model="roomInfo.room_voting"> Yes <span class="invisible">(Allow Voting)</span></label>
+    <label class="radio-checkbox"><input type="radio" name="question_voting" value="0"  checked="true" ng-model="roomInfo.room_voting"> No <span class="invisible">(Don't Alow Voting)</span></label>
+  </div>
+
+  <div class="form-group">
+    <label>Question input</label>
+    <label class="radio-checkbox"><input type="radio" name="question_input" value="1" checked="true" ng-model="roomInfo.room_input"> Allow all questions</label>
+    <label class="radio-checkbox"><input type="radio" name="question_input" value="2" ng-model="roomInfo.room_input"> Written questions only</label>
+    <label class="radio-checkbox"><input type="radio" name="question_input" value="3" ng-model="roomInfo.room_input"> Verbal questions only</label>
+  </div>
+
+  <div class="form-actions">
+    <input type="submit" name="submit" class="btn" value="{{submitValue}}" ng-click="saveRoom()" />
+
+    <input type="button" class="btn light cancel" value="Cancel" ng-click="$parent.modalOff()" />
+  </div>
+</form>

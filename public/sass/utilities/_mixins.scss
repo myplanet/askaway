@@ -1,0 +1,292 @@
+// MIXINS
+// -----------------------------------------------
+
+// CSS3
+//------------------------------------------------
+
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+
+// Responsive
+//------------------------------------------------
+
+@mixin respond-to($media) {
+  @if $media == xxs {
+    @media only screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  @if $media == xs {
+    @media only screen and (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $media == sm {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $media == md {
+    @media only screen and (max-width: 921px) {
+      @content;
+    }
+  }
+  @if $media == lg {
+    @media only screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  // Greater Than
+  @if $media == gt-xs {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $media == gt-sm {
+    @media only screen and (min-width: 769px) {
+      @content;
+    }
+  }
+  @if $media == gt-md {
+    @media only screen and (min-width: 922px) {
+      @content;
+    }
+  }
+}
+
+// Typography
+//------------------------------------------------
+
+// Remove Text
+@mixin remove-text {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+// Positioning
+//------------------------------------------------
+
+@mixin horizontal-center {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+@mixin vertical-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin horizontal-vertical-center {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@mixin reset-center {
+  position: static;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+
+// Animation
+//------------------------------------------------
+
+// Keyframes
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin keyframes-call($name, $time, $iteraction: infinite) {
+  -webkit-animation-name: $name;
+  -webkit-animation-duration: $time;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: $iteraction;
+  -moz-animation-name: $name;
+  -moz-animation-duration: $time;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: $iteraction;
+  animation-name: $name;
+  animation-duration: $time;
+  animation-timing-function: linear;
+  animation-iteration-count: $iteraction;
+}
+
+@include keyframes(pending-aggressive) {
+  0% {
+    background: transparent;
+  }
+  1.2% {
+    background: lighten($pink, 20%);
+  }
+  2.4% {
+    background: transparent;
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@include keyframes(pending-normal) {
+  0% {
+    background: transparent;
+  }
+  0.60% {
+    background: lighten($pink, 20%);
+  }
+  1.2% {
+    background: transparent;
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@include keyframes(pending-passive) {
+  0% {
+    background: transparent;
+  }
+  0.30% {
+    background: lighten($pink, 20%);
+  }
+  0.6% {
+    background: transparent;
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@include keyframes(pending-dormant) {
+  0% {
+    background: transparent;
+  }
+  0.12% {
+    background: lighten($pink, 20%);
+  }
+  0.24% {
+    background: transparent;
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@include keyframes(fade-in) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(fade-out) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@include keyframes(change-up) {
+  0% {
+    color: $grey;
+  }
+  50% {
+    color: $green;
+  }
+  100% {
+    color: $grey;
+  }
+}
+
+@include keyframes(change-down) {
+  0% {
+    color: $grey;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: $grey;
+  }
+}
+
+@include keyframes(change-up-fade-in) {
+  0% {
+    color: $grey;
+    opacity: 0;
+  }
+  50% {
+    color: $green;
+  }
+  100% {
+    color: $grey;
+    opacity: 1;
+  }
+}
+
+@include keyframes(flash) {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@mixin keyframes-stop {
+  -webkit-animation-iteration-count: 0;
+  -moz-animation-iteration-count: 0;
+  animation-iteration-count: 0;
+}

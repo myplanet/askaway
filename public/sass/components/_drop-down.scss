@@ -1,0 +1,51 @@
+.drop-down-wrapper {
+  position: relative;
+
+  @include css-arrow(10px, 1px, white, rgba(0,0,0,0.1), bottom, false);
+
+  &:before,
+  &:after {
+    left: -10000px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1;
+  }
+
+  &.active {
+    &:before,
+    &:after {
+      left: 50%;
+      opacity: 1;
+    }
+
+    .drop-down {
+      left: auto;
+      opacity: 1;
+      right: 0;
+    }
+  }
+}
+
+.drop-down {
+  background: white;
+  box-shadow: 0px 2px 8px rgba(183,148,148,0.15);
+  font-size: 1.4rem;
+  min-width: 260px;
+  left: -10000px;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.drop-down-inner {
+  padding: 20px 30px;
+
+  hr {
+    margin: 20px -30px;
+  }
+}
+
+.drop-down-label {
+  font-size: 1.8rem;
+}

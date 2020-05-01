@@ -1,0 +1,40 @@
+<div id="modal-room-settings--host" class="modal" tabindex="-1" aria-labelledby="mt-room-settings--host" role="dialog">
+  <div class="modal-dialog">
+    <div id="modal-room-settings-host-content" class="modal-content" click-outside="$root.modalOff('modal-room-settings--host')" outside-if-not="modal-room-settings-host-content">
+      <div class="modal-header">
+        <h2 id="mt-room-settings--host" class="modal-title">Room Settings</h2>
+
+        <button type="button" class="close" ng-click="$root.modalOff()"><span class="invisible">Close</span></button>
+      </div>
+
+      <div class="modal-body">
+
+        <room-form-edit
+          room-id="{{room._id}}"
+          room-name="{{room.name}}"
+          room-desc="{{room.desc}}"
+          room-input="{{room.input}}"
+          room-notification="{{room.notification}}"
+          room-voting="{{room.voting}}"
+          room-date="{{room.date}}"
+          room-host="{{theHost.name}}"
+          room-host-image="{{theHost.image}}"
+          room-url="{{url}}"
+        ></room-form-edit>
+
+        <div class="export-questions" ng-show="checkPermission('export')">
+          <hr class="hr-full-width" />
+          <a href="/room/export/{{ room._id }}" class="btn light btn--export" ng-click="$root.modalOff()">Export Questions</a>
+        </div>
+
+        <hr class="hr-full-width" />
+
+        <div class="modal-controls">
+          <a class="btn-leave" ng-click="$parent.roomLeave(true)" ng-hide="!$parent.isHost">End Room</a>
+
+          <a class="btn-leave" ng-click="$parent.roomLeave()" ng-hide="$parent.isHost">Leave Room</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>plus</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile---Rooms" transform="translate(-287.000000, -78.000000)" fill="#FFFFFF">
+            <g id="Subheader---Mobile" transform="translate(0.000000, 56.000000)">
+                <g id="Rectangle-2-+-Create-3" transform="translate(279.000000, 14.000000)">
+                    <path d="M22.6415094,17.509434 L17.2075472,17.509434 L17.2075472,22.6415094 C17.2075472,23.3916981 16.5992453,24 15.8490566,24 C15.0988679,24 14.490566,23.3916981 14.490566,22.6415094 L14.490566,17.509434 L9.35849057,17.509434 C8.60830189,17.509434 8,16.9011321 8,16.1509434 C8,15.4007547 8.60830189,14.7924528 9.35849057,14.7924528 L14.490566,14.7924528 L14.490566,9.35849057 C14.490566,8.60830189 15.0988679,8 15.8490566,8 C16.5992453,8 17.2075472,8.60830189 17.2075472,9.35849057 L17.2075472,14.7924528 L22.6415094,14.7924528 C23.3916981,14.7924528 24,15.4007547 24,16.1509434 C24,16.9011321 23.3916981,17.509434 22.6415094,17.509434 Z" id="plus"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

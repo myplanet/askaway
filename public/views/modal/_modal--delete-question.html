@@ -1,0 +1,19 @@
+<div id="modal-delete-question" class="modal" tabindex="-1" aria-labelledby="mt-delete-question" role="dialog">
+  <div class="modal-dialog">
+    <div id="modal-delete-question-content" class="modal-content" click-outside="$root.modalOff('modal-delete-question')" outside-if-not="modal-delete-question-content">
+      <div class="modal-header">
+        <h2 id="mt-delete-question" class="modal-title">Delete Question</h2>
+      </div>
+
+      <div class="modal-body">
+        <p>Are you sure want to delete your question?</p>
+
+        <div class="form-actions">
+          <input type="button" name="confirm" class="btn" value="Delete" ng-click="$parent.cancelQuestion()" />
+
+          <input type="button" class="btn light cancel" value="Cancel" ng-click="$parent.modalOff()" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

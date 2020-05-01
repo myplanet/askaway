@@ -1,0 +1,15 @@
+<div id="modal-room-create" class="modal" tabindex="-1" aria-labelledby="mt-room-create" role="dialog">
+  <div class="modal-dialog">
+    <div id="modal-create-content" class="modal-content" click-outside="$root.modalOff()" outside-if-not="modal-create-content">
+      <div class="modal-header">
+        <h2 id="mt-room-settings--host" class="modal-title">Create a Room</h2>
+
+        <button type="button" class="close" ng-click="$root.modalOff()"><span class="invisible">Close</span></button>
+      </div>
+
+      <div class="modal-body">
+        <room-form></room-form>
+      </div>
+    </div>
+  </div>
+</div>

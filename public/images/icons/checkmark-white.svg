@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="12px" viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>checkmark</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path id="path-1" d="M0,0 L16,0 L16,11.5555556 L0,11.5555556"></path>
+    </defs>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Room---Host-(Paused)" transform="translate(-867.000000, -269.000000)">
+            <g id="Current-Question---Host" transform="translate(139.000000, 251.000000)">
+                <g id="Answered-Button" transform="translate(704.000000, 3.000000)">
+                    <g id="checkmark" transform="translate(24.000000, 15.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-2"></g>
+                        <path d="M5.43057778,11.5555556 C5.17502222,11.5555556 4.91924444,11.4582222 4.72391111,11.2633333 L0.293466667,6.83933333 C-0.0974222222,6.44911111 -0.0978666667,5.816 0.292355556,5.42511111 C0.682577778,5.03444444 1.31591111,5.03377778 1.70657778,5.424 L5.43057778,9.14244444 L14.2934667,0.292222222 C14.6841333,-0.098 15.3172444,-0.0973333333 15.7076889,0.293333333 C16.0979111,0.684222222 16.0974667,1.31733333 15.7065778,1.70777778 L6.13724444,11.2633333 C5.94191111,11.4582222 5.68613333,11.5555556 5.43057778,11.5555556" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

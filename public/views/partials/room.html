@@ -1,0 +1,234 @@
+<div id="wrapper-inner" class="in-room">
+  <app-header
+    user-name="{{userName}}"
+    user-image="{{userImage}}"
+    heading="{{room.name}}"
+    heading-bot="room"
+  ></app-header>
+
+  <div id="content" class="clearfix" >
+    <section id="main">
+      <div class="room-questions" ng-show="pageLoaded && questions.length">
+        <div class="questions-heading">
+          <h2 ng-class="questionsChange" aria-live="polite">{{questions.length}} Questions</h2>
+
+          <button class="sidebar-toggle" ng-click="$root.sidebarOpen()" type="button">{{attendees.length + cohosts.length + 1}} Attendees</button>
+        </div>
+
+        <!-- Active Question -->
+        <div class="question-active {{ room.notification }}" ng-show="questions.length" ng-class="{
+          'pending' : checkPermission('answer-question') && questions.length,
+          'textual': questions[0].type,
+          'verbal': !questions[0].type,
+          'new': questions[0]._id == newQuestion,
+          'out': questions[0]._id == outQuestion,
+          'answered': answeredLoading }">
+          <div class="user">
+            <span class="user-image">
+              <img src="{{ questions[0].image }}" />
+            </span>
+
+            <span class="user-info">
+              <span class="name">{{ questions[0].name }}</span>
+            </span>
+          </div>
+
+          <h3 class="context">{{ questions[0].desc == '' ? 'I would like to ask a verbal question.' : questions[0].desc }}</h3>
+
+          <div class="question-bottom">
+            <span class="question-time" am-time-ago="questions[0].date"></span>
+            <span class="question-votes" ng-show="room.voting" ng-class="{'mine': questions[0].email == userEmail
+            }">
+              <a class="vote" title="Up Vote Question" ng-class="{
+                'active': idExists(userEmail, questions[0].votes, 'email')
+              }"><span class="invisible">Up Vote</span></a>
+
+              <span class="votes" ng-show="questions[0].votes.length > 0">{{ questions[0].votes.length }} vote{{ questions[0].votes.length == 1 | iif: '' : 's' }}</span>
+              <span class="votes" ng-show="!questions[0].votes.length">No Votes</span>
+            </span>
+          </div>
+
+          <div class="question-controls">
+            <button class="btn purple answer" ng-class="{'answered': answeredLoading}" ng-click="completeQuestion()" {{answeredLoading ? 'disabled' : ''}} type="button"><span class="invisible-xs">Answered</span></button>
+          </div>
+
+        </div>
+
+        <!-- Non Active questions -->
+        <ul id="questions" class="questions" ng-show="questions.length > 1">
+          <li class="question" ng-repeat="question in questions | limitTo: -(questions.length - 1)" ng-class="{
+            'textual': question.type,
+            'verbal': !question.type,
+            'new': question._id == newQuestion,
+            'out': question._id == outQuestion }">
+
+            <a id="question-{{question._id}}" class="invisible">Question {{question._id}}</a>
+
+            <div class="user">
+              <span class="user-image">
+                <img src="{{ question.image }}" />
+              </span>
+
+              <span class="user-info">
+                <span class="name">{{ question.name }}</span>
+              </span>
+            </div>
+
+            <h3 class="context">{{ question.desc == '' ? 'I would like to ask a verbal question.' : question.desc}}</h3>
+
+            <div class="question-bottom">
+              <span class="question-time" am-time-ago="question.date"></span>
+
+              <span class="question-votes" ng-show="room.voting" ng-class="{
+                'mine': question.email == userEmail
+              }">
+                <a class="vote" title="Up Vote Question" ng-click="question.email != userEmail && voteQuestion(question._id, idExists(userEmail, question.votes, 'email'))" ng-class="{
+                'active': idExists(userEmail, question.votes, 'email')
+              }"><span class="invisible">Up Vote This Question</span></a>
+                <span class="votes" ng-show="question.votes.length > 0">{{ question.votes.length }} vote{{ question.votes.length == 1 | iif: '' : 's' }}</span>
+                <span class="votes" ng-show="!question.votes.length">No Votes</span>
+              </span>
+            </div>
+
+            <!-- Controls -->
+            <div class="question-controls">
+              <span ng-show="idExists(question._id, myQuestions, '_id')">
+                <a class="cancel" title="Cancel Question" ng-click="cancelQuestionConfirm(question._id)"><span class="invisible">Remove Question</span></a>
+                <a class="edit" title="Edit Question" ng-hide="room.input == 3" ng-click="editQuestion(question._id, question.desc, question.as)"><span class="invisible">Edit Question</span></a>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Empty States -->
+      <div class="room-empty" ng-show="pageLoaded && !questions.length">
+        <div class="room-empty__host" ng-show="isHost">
+          <h2>Let’s get started.</h2>
+          <p>Invite people to your room.</p>
+
+          <div class="copy-wrapper">
+            <input type="text" value="{{url}}" onclick="this.select();" />
+            <button type="button" ng-click="$root.copyToClipboard(url);">Copy</button>
+          </div>
+        </div>
+        <div class="room-empty__attendee" ng-show="!isHost">
+          <h2>Got a question?</h2>
+          <p>Get started by hitting the ask button.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sidebar" role="complementary" click-outside="$root.sidebarClose()" outside-if-not="sidebar">
+      <button type="button" class="close" ng-click="$root.sidebarClose()"><span class="invisible">Close Sidebar</span></button>
+
+      <div class="attendees" ng-class="{'attendees--host': isHost}">
+        <h2>{{attendees.length + cohosts.length + 1}} Attendees</h2>
+
+        <h3>Host</h3>
+
+        <ul id="host" class="participants">
+          <!-- THE HOST -->
+          <li ng-class="{'is-me': isHost, 'show-dropdown': dropdownIndex == 'host'}">
+            <span class="user-image">
+              <img src="{{ theHost.image }}" />
+            </span>
+
+            <span class="user-info">
+              <span class="name">{{ theHost.name }}</span>
+            </span>
+          </li>
+        </ul>
+
+        <div ng-show="cohosts.length">
+          <h3>Cohost</h3>
+
+          <ul id="cohost" class="participants">
+            <!-- COHOSTS -->
+            <li ng-repeat="cohost in cohosts" ng-class="{'is-me': userEmail == cohost.email}">
+              <span class="user-image">
+                <img src="{{ cohost.image }}" />
+              </span>
+
+              <span class="user-info">
+                <span class="name">{{cohost.name}}</span>
+                <button class="cohost" ng-show="isHost" ng-cloak ng-click="setCohost(cohost._id, 0)" type="button">-Co-host</button>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <h3 ng-class="attendeesChange" class="attendees-title">{{ attendees.length ? attendees.length : 'No'}} Participants</h3>
+
+        <ul ng-show="attendees.length" id="attendees" class="participants">
+          <!-- ATTENDEES -->
+          <li ng-repeat="attendee in attendees" ng-class="{'is-me': userEmail == attendee.email, 'show-dropdown': dropdownIndex == {{$index}}, 'new': attendee.email == newAttendee}">
+            <span class="user-image">
+              <img src="{{ attendee.image }}" />
+            </span>
+
+            <span class="user-info">
+              <span class="name">{{ attendee.name }}</span>
+              <button class="cohost" ng-show="isHost" ng-cloak ng-click="setCohost(attendee._id, 2)" type="button">+Co-host</button>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="loader-wrapper" ng-class="{ 'active': sidebarLoadingOn }">
+        <div class="loader" aria-hidden="true">
+          <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+    <div class="sidebar-fade"></div>
+
+    <!-- Ask/Edit Question -->
+    <section id="ask-edit-questions" class="ask-edit-questions">
+      <div class="ask-edit-questions__inner">
+        <div class="ask-edit-questions__relative">
+          <button type="button" class="close" ng-click="questionSidebar(false)"><span class="invisible">Close</span></button>
+
+          <div class="ask-question" ng-show="questionAskForm && !questionEditForm">
+            <h2>Ask a Question </h2>
+
+            <question-form
+              room-id="{{room._id}}"
+              room-input="{{room.input}}"
+              question-id=""
+              question-desc=""
+            ></question-form>
+          </div>
+
+          <div class="edit-question" ng-show="!questionAskForm && questionEditForm">
+            <h2>Edit Your Question</h2>
+
+            <question-form
+              room-id="{{room._id}}"
+              room-input="{{room.input}}"
+              question-id="{{editQuestionId}}"
+              question-desc="{{editQuestionDesc}}"
+            ></question-form>
+          </div>
+        </div>
+      </div>
+
+      <div class="loader-wrapper" ng-class="{'active': questionFormLoading }">
+        <div class="loader" aria-hidden="true">
+          <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Modals -->
+<div ng-include="'/views/modal/_modal--room-settings--host.html'"></div>
+
+<div ng-include="'/views/modal/_modal--room-settings--attendee.html'"></div>
+
+<div ng-include="'/views/modal/_modal--delete-question.html'"></div>

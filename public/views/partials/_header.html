@@ -1,0 +1,66 @@
+<header class="clearfix">
+  <div class="header-top">
+    <a href="/" id="logo" title="Askaway Logo - Home Link"><span class="invisible">AskAway</span></a>
+
+    <div class="company">
+      <button type="button" class="company-btn">
+        <span class="company-logo">
+          <img src="/images/company/logo.svg" />
+        </span>
+        <span class="company-name">Myplanet</span>
+      </button>
+    </div>
+
+    <div id="drop-down-user" class="header-user drop-down-wrapper" ng-class="{ 'active': userDropOn }" click-outside="userDropOn = false" outside-if-not="drop-down-user">
+      <button class="header-user__btn" ng-click="userDropOn = !userDropOn" type="button" aria-expanded="{{!userDropOn ? false : userDropOn}}">
+        <span class="invisible">Toggle User Menu</span>
+        <span class="user-image">
+          <img src="{{ userImage }}" />
+        </span>
+      </button>
+
+      <div class="drop-down drop-down--user">
+        <div class="drop-down-inner">
+          <h2 class="invisible">User Menu</h2>
+
+          <div class="drop-down-label">{{userName}}</div>
+          <hr />
+          <a href="/logout" target="_self">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-bot">
+    <div class="header-bot__left">
+      <h1>{{heading}}</h1>
+    </div>
+
+    <!-- Bottom: Rooms -->
+    <div class="header-bot__right" ng-show="headingBot == 'rooms'">
+      <button class="btn btn--plus" ng-click="$root.modalOn('modal-room-create')" type="button">
+        <span class="invisible-xs">Create a Room</span>
+      </button>
+    </div>
+
+    <!-- Bottom: Room -->
+    <div class="header-bot__right" ng-show="headingBot == 'room'">
+      <button class="btn btn--ask" ng-click="$parent.askQuestion()" type="button" aria-expanded="{{!questionOn ? false : questionOn}}">Ask a Question</button>
+
+      <button class="presentation-toggle" ng-class="{'active': $root.presentationMode}" type="button" ng-click="$root.presentationMode = !$root.presentationMode" ng-show="$parent.checkPermission('presentation-mode')">
+        <span class="invisible">Toggle Presentation Mode</span>
+        <span class="icon icon-desktop"></span>
+        <span class="icon icon-presentation"></span>
+        <span class="selector"></span>
+      </button>
+
+      <button class="btn-settings" ng-hide="!$parent.checkPermission('edit-room')" ng-click="$root.modalOn('modal-room-settings--host'); roomSettingsOn = !roomSettingsOn" type="button" aria-expanded="{{!roomSettingsOn ? false : roomSettingsOn}}">
+        <span class="invisible-xs">Room Settings</span>
+      </button>
+
+      <button class="btn-settings" ng-hide="$parent.checkPermission('edit-room')"  ng-click="$root.modalOn('modal-room-settings--attendee'); roomSettingsOn = !roomSettingsOn" type="button" aria-expanded="{{!roomSettingsOn ? false : roomSettingsOn}}">
+        <span class="invisible-xs">Room Settings</span>
+      </button>
+    </div>
+  </div>
+</header>

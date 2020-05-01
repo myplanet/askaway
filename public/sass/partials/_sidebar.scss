@@ -1,0 +1,179 @@
+#sidebar {
+  border-left: 1px solid $border-dgrey;
+  @include calc(height, "100% - " + $header-height);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 40px 30px 30px;
+  position: fixed;
+  right: 0;
+  top: $header-height;
+  transition: right 0.5s ease-in-out, box-shadow 0.5s ease;
+  width: $sidebar-width;
+
+  @include respond-to(md) {
+    background: white;
+    border: none;
+    display: none;
+    height: 100%;
+    padding-top: 20px;
+    right: -$sidebar-width;
+    top: 0;
+    z-index: 20;
+  }
+
+  .close {
+    display: none;
+    position: absolute;
+    right: 23px;
+    top: 23px;
+
+    @include respond-to(md) {
+      display: block;
+    }
+  }
+
+  h2 {
+    color: $dgrey;
+    font-size: 2.1rem;
+    margin: 0 0 15px;
+  }
+
+  h3 {
+    color: $grey;
+    font-size: 1.4rem;
+    margin: 0 0 5px;
+  }
+
+  .loader-wrapper {
+    @include calc(height, "100% - " + $header-height);
+    left: auto;
+    right: 0;
+    top: $header-height;
+    width: $sidebar-width;
+
+    @include respond-to(xs) {
+      height: 100%;
+      top: 0;
+    }
+
+    .loader {
+      left: auto;
+      margin-right: ($sidebar-width / 2) - 30;
+      right: 0;
+    }
+  }
+}
+
+.sidebar-fade {
+  background: rgba(242, 242, 242,0.7);
+  bottom: 0;
+  display: none;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 0.5s ease;
+  z-index: 11;
+
+  @include respond-to(gt-md) {
+    display: none !important;
+  }
+}
+
+@include respond-to(md) {
+  .sidebar-on {
+    #sidebar {
+      box-shadow: 0 0 18px rgba(0,0,0,0.12);
+      display: block;
+    }
+
+    .sidebar-fade {
+      display: block;
+    }
+  }
+
+  .sidebar-in {
+    #sidebar {
+      right: 0;
+    }
+
+    .sidebar-fade {
+      opacity: 1;
+    }
+  }
+}
+
+.participants {
+  margin: 0 0 5px;
+  padding: 0;
+
+  li {
+    display: flex;
+    list-style: none;
+    margin: 0 0 5px;
+    padding: 10px 0;
+    position: relative;
+
+    &:last-of-type {
+      margin: 0;
+    }
+
+    &.new {
+      @include keyframes-call(change-up-fade-in, 0.3s, 1);
+    }
+  }
+
+  .user-info {
+    flex-grow: 1;
+  }
+
+  .cohost {
+    color: $pink;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: -8px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+
+    &:hover {
+      color: darken($pink, 10%);
+    }
+  }
+}
+
+.attendees--host .participants {
+  li {
+    padding-right: 50px;
+  }
+}
+
+h3.attendees-title {
+  position: relative;
+
+  &:before {
+    left: -8px;
+    opacity: 0;
+    position: absolute;
+  }
+
+  &.up {
+    @include keyframes-call(change-up, 0.5s, 1);
+
+    &:before {
+      content: "+";
+      left: -12px;
+      @include keyframes-call(flash, 0.5s, 1);
+    }
+  }
+
+  &.down {
+    @include keyframes-call(change-down, 0.5s, 1);
+
+    &:before {
+      content: "-";
+      @include keyframes-call(flash, 0.5s, 1);
+    }
+  }
+}

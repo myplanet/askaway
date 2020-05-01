@@ -1,0 +1,46 @@
+<div id="wrapper-inner" class="room-selection" ng-class="{loaded: pageLoaded}">
+  <app-header
+    user-name="{{userName}}"
+    user-image="{{userImage}}"
+    heading="Rooms"
+    heading-bot="rooms"
+  ></app-header>
+
+  <div id="content" class="clearfix" >
+    <section id="room-selection">
+      <h2 class="invisible">Rooms Listing</h2>
+
+      <div ng-show="pageLoaded && !rooms.length" class="empty">There are currently no rooms online.</div>
+
+      <ul ng-hide="!rooms.length" id="rooms">
+        <li ng-repeat="room in rooms" ng-class="{
+          'new': room._id == newRoom,
+          'out': room._id == outRoom
+        }">
+          <h3>{{ room.name }} </h3>
+
+          <hr />
+
+          <p class="desc">{{ room.desc || "No description for this room." }}</p>
+
+          <div class="info-group info-group--host" ng-show="room.host_name">
+            <span class="user-image">
+              <img src="{{room.host_image}}" />
+            </span>
+
+            <span class="info-group__value">{{room.host_name}}</span>
+          </div>
+
+          <div class="info-group info-group--date">
+            <span class="info-group__value">{{room.date | date:'MMM d, yyyy'}}</span>
+          </div>
+
+          <a href="/room/{{ room._id }}" class="join" ng-class="{'rejoin': idExists(room._id, myRooms, 'room_id')}">{{idExists(room._id, myRooms, 'room_id') ? 'Rejoin' : 'Join'}} Room</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<!-- Modals -->
+<div ng-include="'/views/modal/_modal--room-create.html'"></div>

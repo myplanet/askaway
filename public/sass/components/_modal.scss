@@ -1,0 +1,133 @@
+html.modal-open {
+  &.is-ios {
+    height: 100%;
+    overflow: hidden;
+
+    body {
+      height: 100%;
+    }
+  }
+
+  body {
+    overflow: hidden;
+  }
+}
+
+.modal {
+  background: rgba(242, 242, 242,0.7);
+  bottom: 0;
+  display: none;
+  left: 0;
+  opacity: 0;
+  outline: 0;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 10001;
+
+  &.active {
+    display: block;
+  }
+
+  &.in {
+    opacity: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 500px;
+  max-width: 31.25em;
+  min-height: 100%;
+  padding: 40px 0;
+
+  @include respond-to(xs) {
+    padding: 25px;
+  }
+}
+
+.modal-content {
+  background: white;
+  box-shadow: 0px 9px 18px rgba(0,0,0,0.12);
+}
+
+.modal-header {
+  padding: 50px 20px 5px;
+  position: relative;
+  text-align: center;
+
+  h2 {
+    font-size: 2.4rem;
+    margin: 0;
+  }
+
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+}
+
+.modal-body {
+  padding: 20px 60px;
+
+  @include respond-to(xs) {
+    padding: 20px 30px;
+  }
+
+  h3 {
+    margin: 0 0 5px;
+  }
+
+  hr.hr-full-width {
+    margin: 30px -60px 32px;
+
+    @include respond-to(xs) {
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: center;
+
+    @include respond-to(xs) {
+      flex-wrap: wrap;
+    }
+
+    input.btn {
+      @include respond-to(xs) {
+        margin: 5px 0;
+        width: 100%;
+      }
+    }
+
+    .cancel {
+      order: -1;
+
+      @include respond-to(xs) {
+        order: 1;
+      }
+    }
+  }
+}
+
+.modal-controls {
+  padding-bottom: 15px;
+  text-align: center;
+
+  a {
+    color: $grey;
+    display: inline-block;
+    font-size: 1.4rem;
+  }
+}

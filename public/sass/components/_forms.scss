@@ -1,0 +1,142 @@
+// FORMS
+// -----------------------------------------------
+
+ul.form-error {
+  color: $pink;
+  display: block;
+  margin: 20px 0;
+  padding: 5px 0;
+  li {
+    display: block;
+    font-size: 1.4rem;
+    margin: 0px;
+    padding: 0;
+  }
+}
+
+.form-group {
+  margin: 0 0 30px;
+
+  &.last {
+    margin-bottom: 0;
+  }
+
+	&.space-below {
+		margin-bottom: 20px;
+	}
+}
+
+.form-actions {
+  margin: 40px 0;
+  text-align: center;
+
+  .btn {
+    margin: 0 5px;
+  }
+}
+
+label {
+  display: block;
+  font-size: 1.8rem;
+  margin: 0 0 10px;
+
+  &.radio-checkbox {
+    color: $grey;
+    font-size: 1.4rem;
+    margin-bottom: 0px;
+    margin-top: 12px;
+
+    input {
+      margin-right: 5px;
+    }
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  box-shadow: none;
+}
+
+input,
+select,
+textarea {
+  background: $form-bg;
+  border: 1px solid $form-border;
+  border-radius: 2px;
+  color: $grey;
+  font-size: 1.4rem;
+}
+
+input[type="text"],
+textarea {
+  padding: 13px 20px 15px;
+  width: 100%;
+
+  &.ng-invalid-maxlength {
+    background: #fbeaea;
+    border: 1px solid $pink;
+  }
+}
+
+select {
+  background: $form-bg url(../images/icons/chevron-down-grey.svg) right 20px center no-repeat;
+  background-size: 14px auto;
+  padding: 13px 50px 15px 20px;
+  width: 100%;
+}
+
+form.submitted {
+  input[type="text"],
+  select,
+  textarea {
+    &.ng-invalid {
+      background: #fbeaea;
+      border: 1px solid $pink;
+    }
+  }
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+input[type="submit"],
+input[type="button"] {
+  border: none;
+}
+
+input[type="radio"] {
+  background: $form-bg;
+  border-radius: 50%;
+  height: 20px;
+  margin-bottom: -5px;
+  width: 20px;
+
+  &:active {
+    background: darken($form-bg, 10%);
+  }
+
+  &:checked {
+    background: $pink;
+    border-color: $pink;
+    position: relative;
+
+    &:after {
+      background: white;
+      border-radius: 50%;
+      content: "";
+      display: block;
+      height: 10px;
+      left: 50%;
+      margin: -5px 0 0 -5px;
+      position: absolute;
+      top: 50%;
+      width: 10px;
+    }
+  }
+}

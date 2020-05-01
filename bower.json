@@ -1,0 +1,13 @@
+{
+  "name": "askaway",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.5.0",
+    "angular-click-outside": "latest",
+    "angular-cookies": "latest",
+    "angular-route": "latest",
+    "angular-moment": "latest",
+    "angular-touch": "latest",
+    "fastclick": "latest"
+  }
+}

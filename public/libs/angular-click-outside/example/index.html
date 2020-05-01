@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Example App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+</head>
+
+<body>
+    <div ng-view>
+        <div ng-controller="AppController">
+            <ul id="dropdown-menu" click-outside="closeThis()" outside-if-not="exclusion-zone, menu-button">
+                <li><a href="#" ng-click="showDropdown = true">Drop down menu</a></li>
+                <ul id="sub-menu" ng-show="showDropdown">
+                    <li><a href="#link1">Menu Item 1</a></li>
+                    <li><a href="#link2">Menu Item 2</a></li>
+                </ul>
+            </ul>
+            <div class="spacer">&nbsp;</div>
+            <div class="zones" id="exclusion-zone">Click outsides will be ignored in here</div>
+            <div class="spacer">&nbsp;</div>
+            <button id="menu-button">Button is excluded as well</button>
+            <div class="spacer">&nbsp;</div>
+            <div class="zones" id="non-exclusion-zone">This is not excluded and will register as a click outside of the menu</div>
+        </div>
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="../clickoutside.directive.js"></script>
+    <script src="js/controllers/app.controller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<div id="modal-room-settings--attendee" class="modal" tabindex="-1" aria-labelledby="mt-room-settings--attendee" role="dialog">
+  <div class="modal-dialog">
+    <div id="modal-room-settings-content" class="modal-content" click-outside="$root.modalOff('modal-room-settings--attendee')" outside-if-not="modal-room-settings-content">
+      <div class="modal-header">
+        <h2 id="mt-room-settings--attendee" class="modal-title">Room Settings</h2>
+
+        <button type="button" class="close" ng-click="$root.modalOff()"><span class="invisible">Close</span></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="info-group">
+          <h3>Room Name</h3>
+          <span class="info-group__value">{{room.name}}</span>
+        </div>
+
+        <div class="info-group" ng-hide="!room.desc">
+          <h3>Short Description</h3>
+          <span class="info-group__value">{{room.desc}}</span>
+        </div>
+
+        <div class="info-group info-group--date">
+          <span class="info-group__value">Created: {{room.date | date:'MMM d, yyyy'}}</span>
+        </div>
+
+        <div class="info-group info-group--host">
+          <span class="user-image">
+            <img src="{{theHost.image}}" />
+          </span>
+
+          <span class="info-group__value">Host: {{theHost.name}}</span>
+        </div>
+
+        <div class="info-group info-group--link">
+          <span class="info-group__value">{{url}}</span>
+        </div>
+
+        <hr class="hr-full-width" />
+
+        <div class="info-group">
+          <h3>Queue Notification</h3>
+          <span class="info-group__value">{{room.notificationOutput}}</span>
+        </div>
+
+        <div class="info-group">
+          <h3>Voting</h3>
+          <span class="info-group__value">{{room.votingOutput}}</span>
+        </div>
+
+        <div class="info-group">
+          <h3>Input Method</h3>
+          <span class="info-group__value">{{room.inputOutput}}</span>
+        </div>
+
+        <hr class="hr-full-width" />
+
+        <div class="modal-controls">
+          <a class="btn-leave" ng-click="roomLeave()">Leave Room</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

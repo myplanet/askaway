@@ -1,0 +1,228 @@
+// HEADER
+// -----------------------------------------------
+
+header {
+  background: white;
+  box-shadow: 0 1px 1px rgba(173,135,135,0.15);
+  color: $dgrey;
+  height: $header-height;
+  left: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  @include respond-to(xs) {
+    height: $header-height-phone;
+  }
+}
+
+.header-inner {
+  position: relative;
+}
+
+.header-top {
+  border-bottom: 1px solid $border-grey;
+  height: 65px;
+  padding: 0 30px;
+  position: relative;
+
+  @include respond-to(xs) {
+    height: 55px;
+    padding: 15px 20px;
+  }
+
+  #logo {
+    @include vertical-center;
+
+    background-image: url("../images/logo-dark.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto 23px;
+    float: left;
+    height: 23px;
+    margin: 0;
+    width: 110px;
+
+    @include respond-to(xs) {
+      background-size: auto 17px;
+      height: 17px;
+      width: 80px;
+    }
+  }
+}
+
+.company {
+  @include vertical-center;
+  border-left: 1px solid $border-grey;
+  float: left;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+.company-logo {
+  color: #A8ADB1;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 1.8rem;
+  height: 26px;
+  margin: 0 10px 0 0;
+  vertical-align: top;
+
+  @include respond-to(xs) {
+    height: 20px;
+		margin-top: 2px;
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.company-logo__empty {
+  @include vertical-center;
+  display: block;
+  margin-top: -2px;
+}
+
+.company-name {
+  display: inline-block;
+	display: none;
+  font-size: 1.8rem;
+  margin-top: -2px;
+  vertical-align: middle;
+
+  @include respond-to(xs) {
+    font-size: 1.4rem;
+  }
+}
+
+.header-user {
+  border-left: 1px solid $border-grey;
+  height: 100%;
+  padding: 16px 30px 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 11;
+
+  @include respond-to(xs) {
+    border-left: 0;
+    padding: 13px 20px 0 20px;
+  }
+
+  .user-image {
+    height: 32px;
+    margin-right: 0;
+    width: 32px;
+
+    @include respond-to(xs) {
+      height: 28px;
+      width: 28px;
+    }
+  }
+
+  .drop-down {
+    z-index: 1;
+  }
+
+  &.active .drop-down {
+    right: 20px;
+  }
+}
+
+.header-bot {
+  display: flex;
+  height: 80px;
+  padding: 18px 30px;
+
+  @include respond-to(xs) {
+    height: 60px;
+    padding: 14px 20px;
+  }
+
+  h1 {
+    color: $dgrey;
+  }
+}
+
+.header-bot__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-align: left;
+  width: 40%;
+  white-space: nowrap;
+
+  @include respond-to(xs) {
+    flex-grow: 1;
+    width: auto;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 300;
+    overflow: hidden;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+
+    @include respond-to(xs) {
+      font-size: 1.8rem;
+      font-weight: 400;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.header-bot__right {
+  text-align: right;
+  width: 60%;
+
+  > * {
+    vertical-align: middle;
+  }
+
+  @include respond-to(xs) {
+    flex-basis: 100px;
+    flex-shrink: 0;
+    width: auto;
+  }
+
+  .btn--plus {
+    @include respond-to(xs) {
+      background-image: url(../images/icons/plus-white.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 16px;
+      height: 32px;
+      padding: 0;
+      width: 32px;
+    }
+  }
+
+  .btn-settings {
+    background: url(../images/icons/cog.svg) no-repeat left 2px;
+    background-size: 24px;
+    color: $grey;
+    font-size: 1.6rem;
+    height: 26px;
+    margin-left: 30px;
+    padding-left: 30px;
+    position: relative;
+
+    @include respond-to(xs) {
+      height: 32px;
+      margin-left: 20px;
+      padding: 0;
+      top: 2px;
+      width: 24px;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+#exclusion-zone {
+    background-color: #990000;
+    color: #FFFFFF;
+}
+
+#non-exclusion-zone {
+    background-color: #dfdfdf;
+    color: #222;
+}
+
+#dropdown-menu {
+    width: 130px;
+}
+
+.zones {
+    padding: 10px;
+    width: 130px;
+    height: 100px;
+}
+
+.spacer {
+    display: block;
+    height: 10px;
+}

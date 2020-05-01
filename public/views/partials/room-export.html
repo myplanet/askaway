@@ -1,0 +1,109 @@
+<div id="wrapper-inner" class="in-room">
+  <app-header
+    user-name="{{userName}}"
+    user-image="{{userImage}}"
+    heading="{{room.name}} (Export)"
+  ></app-header>
+
+  <div id="content" class="clearfix" >
+    <section id="main">
+      <div class="room-questions">
+        <div class="questions-heading">
+          <h2 ng-class="questionsChange" aria-live="polite">Exporting {{questions.length}} Questions</h2>
+
+          <button class="sidebar-toggle" ng-click="$root.sidebarOpen()" type="button">{{attendees.length + cohosts.length + 1}} Attendees</button>
+        </div>
+
+        <table id="questions" ng-show="questions.length > 1">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Time</th>
+              <th>Question</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class=""  ng-repeat="question in questions">
+              <td class="status">
+                {{ !question.status | iif: '&#149;' : '' }}
+              </td>
+              <td>
+                {{ question.name }}
+              </td>
+              <td>
+                {{ question.email }}
+              </td>
+              <td>
+                {{ question.date | date:'MMM dd yyyy'}}
+              </td>
+              <td class="question">
+                {{ question.desc == '' | iif: 'Verbal Question' : question.desc }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="sidebar" role="complementary" click-outside="$root.sidebarClose()" outside-if-not="sidebar">
+        <div class="attendees">
+          <h2>{{attendees.length + cohosts.length + 1}} Attendees</h2>
+
+          <h3>Host</h3>
+
+          <ul id="host" class="participants">
+            <li ng-class="{'is-me': isHost, 'show-dropdown': dropdownIndex == 'host'}">
+              <span class="user-image">
+                <img src="{{ theHost.image }}" />
+              </span>
+
+              <span class="user-info">
+                <span class="name">{{ theHost.name }}</span>
+              </span>
+            </li>
+          </ul>
+
+          <div ng-show="cohosts.length">
+            <h3>Cohost</h3>
+
+            <ul id="cohost" class="participants">
+              <!-- COHOSTS -->
+              <li ng-repeat="cohost in cohosts" ng-class="{'is-me': userEmail == cohost.email}">
+                <span class="user-image">
+                  <img src="{{ cohost.image }}" />
+                </span>
+
+                <span class="user-info">
+                  <span class="name">{{cohost.name}}</span>
+                  <button class="cohost" ng-show="isHost" ng-cloak ng-click="setCohost(cohost._id, 0)" type="button">-Co-host</button>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <h3 ng-class="attendeesChange" class="attendees-title">{{ attendees.length ? attendees.length : 'No'}} Participants</h3>
+
+          <ul ng-show="attendees.length" id="attendees" class="participants">
+            <!-- ATTENDEES -->
+            <li ng-repeat="attendee in attendees" ng-class="{'is-me': userEmail == attendee.email, 'show-dropdown': dropdownIndex == {{$index}}, 'new': attendee.email == newAttendee}">
+              <span class="user-image">
+                <img src="{{ attendee.image }}" />
+              </span>
+
+              <span class="user-info">
+                <span class="name">{{ attendee.name }}</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <div class="sidebar-fade"></div>
+  </div>
+</div>
+
+<!-- Modals -->
+<div ng-include="'/views/modal/_modal--room-settings--host.html'"></div>
+
+<div ng-include="'/views/modal/_modal--room-settings--attendee.html'"></div>

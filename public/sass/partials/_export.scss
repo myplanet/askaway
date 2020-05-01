@@ -1,0 +1,30 @@
+table#questions {
+  tr {
+    th,
+    td {
+      padding: 10px 5px;
+      text-align: left;
+    }
+    td {
+      font-size: 1.2rem;
+      vertical-align: top;
+      width: 14%;
+
+      &.status {
+        font-size: 1.2rem;
+        text-align: center;
+        width: 3%;
+      }
+
+      &.question {
+        width: 55%;
+      }
+    }
+
+    &:nth-of-type(2n+1) {
+      td {
+        background: darken($lgrey, 2.5%);
+      }
+    }
+  }
+}
