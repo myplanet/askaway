@@ -1,5 +1,4 @@
 # Askaway
-
 Askaway is a tool that facilitates...
 You can share the link to the room externally to allow individuals to join the discussion.
 
@@ -10,6 +9,9 @@ Room Settings:
 - allow verbal questions only
 
 There is also an option to export the questions afterwards.
+
+## Licensing
+Please note that AskAway is licensed under GNU AGPLv3.  Please see the included license file for more details about what you may and may not do with this codebase.
 
 ## Set up your own Askaway
 These steps will provide detailed info for configuring an instance of Askaway that you can run on a custom machine like a development environment, or inside Heroku. The application is configured with environment variables making it flexible to deploy in many places, though testing has primarily been done on local development environments and via deployment with Heroku.
